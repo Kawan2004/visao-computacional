@@ -1,6 +1,4 @@
-from capturar_video import capturar_video
+from capturar_face import capturar_face
 
-
-
-camera = capturar_video ()
+camera = capturar_face ()
 camera.iniciar_camera()
