@@ -1,12 +1,12 @@
 from capturar_face import capturar_face
 
 camera = capturar_face ()
-camera.iniciar_camera()
+camera.capturar_imagens ()
 
 '''
 
 print ("\n1 - Cadastrar rosto\n2 - Realizar reconhecimento facial\n3 - Sair")
-
+q
 resposta = int (input ("\n> "))
 
 if (resposta == 1):
