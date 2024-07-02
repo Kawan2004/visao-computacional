@@ -3,10 +3,11 @@ import os
 
 class CadastrarFace:
 
-    def __init__(self):
+    def __init__(self, nome):
         
         self.video = cv.VideoCapture (0) # objeto que inicializa a camera principal (0)
-        self.contador = 0
+        self.contador_imagem = 0
+        self.nome = nome
 
     def capturar_imagens (self):
         
@@ -17,34 +18,54 @@ class CadastrarFace:
             if (not ret): # verifica se o frame pode ser capturado
                 break
 
-            # Pré processamento de imagens
-
-            gray = cv.cvtColor (frame, cv.COLOR_BGR2GRAY) # processamento de imagem, que transforma em escala cinza
-    
-
-            cv.imshow ('Janela', gray) # exibe a camera
+            cv.imshow ('Janela', self.processar_imagem (frame)) # exibe a camera
 
             if cv.waitKey (1) & 0xFF == ord('c'): # condicional para capturar rosto
 
-                os.makedirs("imagens", exist_ok=True) # criando diretorio para guardar imagens
-
-                nome_img = f"img-{self.contador}.jpg"
-                path = os.path.join("imagens", nome_img)
-
-                cv.imwrite(path, gray) # metodo para guardar imagens
-
-                print(f"imagem capturada com sucesso!")
-
-                self.contador += 1  # Incrementar o contador para o próximo arquivo
 
 
+                self.salvar_imagem (frame)
+                
             if cv.waitKey (1) & 0xFF == ord('q'): # condicional para encerrar a execução
                 break
 
-        # Liberação de recursos
-
         self.video.release () # encerra a conexão com a camera
         cv.destroyAllWindows () # fecha todas as janelas aberta pelo open-cv
+
+    def processar_imagem (self, frame):
+
+        gray = cv.cvtColor (frame, cv.COLOR_BGR2GRAY) # processamento de imagem, que transforma em escala cinza
+
+        return gray
+
+    def salvar_imagem (self, frame):
+
+        os.makedirs("imagens", exist_ok = True) # criando diretorio para guardar imagens
+
+        os.makedirs(f"imagens/{self.nome}", exist_ok = True) # criando diretorio para guardar imagens
+
+        nome_imagem = f"img-{self.contador_imagem}.jpg"
+
+        path = os.path.join(f"imagens/{self.nome}", nome_imagem)
+
+        cv.imwrite(path, self.processar_imagem (frame)) # metodo para guardar imagens
+
+        print(f"imagem capturada com sucesso!")
+
+        self.contador_imagem += 1  # Incrementar o contador para o próximo arquivo'''
+
+     
+        
+        
+
+        
+
+        
+
+        
+
+    
+
 
     
     
