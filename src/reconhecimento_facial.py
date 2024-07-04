@@ -59,7 +59,6 @@ class ReconhecimentoFacial:
         nome_pessoa = self.label_map_inverso.get(rotulo, "Desconhecido")
         return nome_pessoa, confianca
 
-# Exemplo de uso da classe ReconhecimentoFacial
 if __name__ == "__main__":
     reconhecimento = ReconhecimentoFacial()
     reconhecimento.detectar_face()

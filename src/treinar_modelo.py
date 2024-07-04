@@ -58,7 +58,6 @@ class TreinarModelo:
 
         print("Modelo treinado!")
 
-# Exemplo de uso da classe TreinaModelo
 if __name__ == "__main__":
     trainer = TreinarModelo()
     trainer.treinar_modelo()
